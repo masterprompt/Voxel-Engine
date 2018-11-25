@@ -1,0 +1,30 @@
+﻿using UnityEngine;
+using VoxelEngine.Loaders;
+
+namespace VoxelEngine
+{
+    /// <summary>
+    /// A 3D object containing Voxelchunks
+    /// </summary>
+    public class Voxelscape : MonoBehaviour
+    {
+        public int size = 10;
+        
+        public void Start()
+        {
+            var filePath = Application.dataPath + "/voxmap.json";
+            var voxelmap = new Voxmap(size, size, size);
+            var loader = new FileLoader(filePath);
+            // var loader = new PerlinNoise();
+            loader.Load(voxelmap);
+            var chunk = new Chunk();
+            var renderer = new FullRenderer(chunk);
+            renderer.Render(voxelmap);
+            Mesh mesh = GetComponent<MeshFilter>().mesh;
+            mesh.Clear();
+            mesh.vertices = chunk.vertices.ToArray();
+            mesh.triangles = chunk.triangles.ToArray();
+
+        }
+    }
+}
