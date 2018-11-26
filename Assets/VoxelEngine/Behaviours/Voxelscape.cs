@@ -24,7 +24,7 @@ namespace VoxelEngine
             mesh.Clear();
             mesh.vertices = chunk.vertices.ToArray();
             mesh.triangles = chunk.triangles.ToArray();
-
+            mesh.RecalculateNormals();
         }
     }
 }
