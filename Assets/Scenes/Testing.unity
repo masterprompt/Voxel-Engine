@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 10
+  optimize: 1
 --- !u!114 &1503186203
 MonoBehaviour:
   m_ObjectHideFlags: 0
