@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using VoxelEngine.Loaders;
 
 namespace VoxelEngine
@@ -9,6 +10,7 @@ namespace VoxelEngine
     public class Voxelscape : MonoBehaviour
     {
         public int size = 10;
+        public bool optimize;
         
         public void Start()
         {
@@ -24,7 +26,8 @@ namespace VoxelEngine
             mesh.Clear();
             mesh.vertices = chunk.vertices.ToArray();
             mesh.triangles = chunk.triangles.ToArray();
-            mesh.RecalculateNormals();
+            //mesh.RecalculateNormals();
+            if (optimize) MeshUtility.Optimize(mesh);
         }
     }
 }
