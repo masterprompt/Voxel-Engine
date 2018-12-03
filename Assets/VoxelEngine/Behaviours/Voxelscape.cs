@@ -16,11 +16,12 @@ namespace VoxelEngine
         {
             var filePath = Application.dataPath + "/voxmap.json";
             var voxelmap = new Voxmap(size, size, size);
-            var loader = new FileLoader(filePath);
+            var loader = new FillLoader();
+            //var loader = new FileLoader(filePath);
             // var loader = new PerlinNoise();
             loader.Load(voxelmap);
             var chunk = new Chunk();
-            var renderer = new FullRenderer(chunk);
+            var renderer = new BlockRenderer(chunk);
             renderer.Render(voxelmap);
             Mesh mesh = GetComponent<MeshFilter>().mesh;
             mesh.Clear();

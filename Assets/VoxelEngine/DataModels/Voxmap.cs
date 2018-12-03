@@ -10,21 +10,18 @@ namespace VoxelEngine
     public class Voxmap
     {
         public Voxel[] voxels;
-        public int Width { get; private set; }
-        public int Height { get; private set; }
-        public int Depth { get; private set; }
+        public int Width { get; }
+        public int Height { get; }
+        public int Depth { get; }
         public Vector3 scale;
 
-        public Vector3 VoxelSize
-        {
-            get { return new Vector3(scale.x / Width, scale.y / Height, scale.z / Depth); }
-        }
+        public Vector3 VoxelSize => new Vector3(scale.x / Width, scale.y / Height, scale.z / Depth);
 
         public Voxmap(int width, int height, int depth)
         {
-            this.Width = width;
-            this.Height = height;
-            this.Depth = depth;
+            Width = width;
+            Height = height;
+            Depth = depth;
             voxels = new Voxel[width * height * depth];
             scale = Vector3.one;
         }
@@ -37,7 +34,8 @@ namespace VoxelEngine
 
         public int GetIndex(int x, int y, int z)
         {
-            return x + Width * Height + y * Height + z;
+            //Debug.Log($"{x}, {y}, {z} -> {(x + Width * (y + Depth * z))}");
+            return x + Width * (y + Depth * z);
         }
     }
 }
