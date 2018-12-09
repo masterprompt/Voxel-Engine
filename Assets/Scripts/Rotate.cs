@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace UnityEngine
 {
     public class Rotate : MonoBehaviour
     {

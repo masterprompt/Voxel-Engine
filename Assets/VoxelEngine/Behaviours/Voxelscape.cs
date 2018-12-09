@@ -14,7 +14,7 @@ namespace VoxelEngine
         
         public void Start()
         {
-            var filePath = Application.dataPath + "/voxmap.json";
+            var filePath = UnityEngine.Application.dataPath + "/voxmap.json";
             var voxelmap = new Voxmap(size, size, size);
             var loader = new FillLoader();
             //var loader = new FileLoader(filePath);

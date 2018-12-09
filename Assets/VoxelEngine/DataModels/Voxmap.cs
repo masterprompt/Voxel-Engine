@@ -32,10 +32,10 @@ namespace VoxelEngine
             set { voxels[GetIndex(x, y, z)] = value; }
         }
 
-        public int GetIndex(int x, int y, int z)
+        private int GetIndex(int x, int y, int z)
         {
-            //Debug.Log($"{x}, {y}, {z} -> {(x + Width * (y + Depth * z))}");
-            return x + Width * (y + Depth * z);
+            // return x + Width * (y + Depth * z);
+            return x * Width * Height + y * Height + z;
         }
     }
 }
