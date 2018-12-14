@@ -10,10 +10,10 @@ namespace VoxelEngine
         {
             this.filePath = filePath;
         }
-        public void Render(Voxmap voxmap)
+        public void Render(Chunk chunk)
         {
             StreamWriter writer = new StreamWriter(filePath, false);
-            var json = JsonUtility.ToJson(voxmap);
+            var json = JsonUtility.ToJson(chunk);
             writer.Write(json);
             writer.Close();
         }

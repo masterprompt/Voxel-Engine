@@ -4,38 +4,38 @@ namespace VoxelEngine
 {
     public class FullRenderer : IVoxmapRenderer
     {
-        private Chunk chunk;
+        private ChunkMesh _chunkMesh;
 
-        public FullRenderer(Chunk chunk)
+        public FullRenderer(ChunkMesh chunkMesh)
         {
-            this.chunk = chunk;
+            this._chunkMesh = chunkMesh;
         }
         
-        public void Render(Voxmap voxmap)
+        public void Render(Chunk chunk)
         {
-            var voxelSize = voxmap.VoxelSize;
-            var voxmapStart = voxmap.scale * -0.5f;
+            var voxelSize = chunk.VoxelSize;
+            var voxmapStart = chunk.scale * -0.5f;
             //var quadStart = 1f * -0.5f;
             //    For each voxel, render all sides of it
-            for (var x=0; x<voxmap.Width; x++)
+            for (var x=0; x<chunk.Width; x++)
             {
                 var xmin = voxmapStart.x + (voxelSize.x * x);
                 var xmax = xmin + voxelSize.x;
-                for (var y=0; y<voxmap.Height; y++)
+                for (var y=0; y<chunk.Height; y++)
                 {
                     var ymin = voxmapStart.y + (voxelSize.y * y);
                     var ymax = ymin + voxelSize.y;
-                    for (var z=0; z<voxmap.Depth; z++)
+                    for (var z=0; z<chunk.Depth; z++)
                     {
-                        if(voxmap[x,y,z].m==0) continue;
+                        if(chunk[x,y,z].m==0) continue;
                         var zmin = voxmapStart.z + (voxelSize.z * z);
                         var zmax = zmin + voxelSize.z;
-                        AddQuad(chunk, CreateFaceX(xmin, xmax, ymin, ymax, zmin));
-                        AddQuad(chunk, CreateFaceX(xmax, xmin, ymin, ymax, zmax));
-                        AddQuad(chunk, CreateFaceZ(zmin, zmax, ymin, ymax, xmax));
-                        AddQuad(chunk, CreateFaceZ(zmax, zmin, ymin, ymax, xmin));
-                        AddQuad(chunk, CreateFaceY(xmin, xmax, zmin, zmax, ymax));
-                        AddQuad(chunk, CreateFaceY(xmax, xmin, zmin, zmax, ymin));
+                        AddQuad(_chunkMesh, CreateFaceX(xmin, xmax, ymin, ymax, zmin));
+                        AddQuad(_chunkMesh, CreateFaceX(xmax, xmin, ymin, ymax, zmax));
+                        AddQuad(_chunkMesh, CreateFaceZ(zmin, zmax, ymin, ymax, xmax));
+                        AddQuad(_chunkMesh, CreateFaceZ(zmax, zmin, ymin, ymax, xmin));
+                        AddQuad(_chunkMesh, CreateFaceY(xmin, xmax, zmin, zmax, ymax));
+                        AddQuad(_chunkMesh, CreateFaceY(xmax, xmin, zmin, zmax, ymin));
                     }
                 }
             }
@@ -74,19 +74,19 @@ namespace VoxelEngine
             };
         }
 
-        private void AddQuad(Chunk chunk, Vector3[] vertices)
+        private void AddQuad(ChunkMesh chunkMesh, Vector3[] vertices)
         {
-            chunk.vertices.Add(vertices[0]);
-            chunk.vertices.Add(vertices[1]);
-            chunk.vertices.Add(vertices[2]);
-            chunk.vertices.Add(vertices[3]);
+            chunkMesh.vertices.Add(vertices[0]);
+            chunkMesh.vertices.Add(vertices[1]);
+            chunkMesh.vertices.Add(vertices[2]);
+            chunkMesh.vertices.Add(vertices[3]);
                     
-            chunk.triangles.Add(chunk.vertices.Count - 4);
-            chunk.triangles.Add(chunk.vertices.Count - 3);
-            chunk.triangles.Add(chunk.vertices.Count - 2);
-            chunk.triangles.Add(chunk.vertices.Count - 2);
-            chunk.triangles.Add(chunk.vertices.Count - 1);
-            chunk.triangles.Add(chunk.vertices.Count - 4);
+            chunkMesh.triangles.Add(chunkMesh.vertices.Count - 4);
+            chunkMesh.triangles.Add(chunkMesh.vertices.Count - 3);
+            chunkMesh.triangles.Add(chunkMesh.vertices.Count - 2);
+            chunkMesh.triangles.Add(chunkMesh.vertices.Count - 2);
+            chunkMesh.triangles.Add(chunkMesh.vertices.Count - 1);
+            chunkMesh.triangles.Add(chunkMesh.vertices.Count - 4);
         }
     }
 }

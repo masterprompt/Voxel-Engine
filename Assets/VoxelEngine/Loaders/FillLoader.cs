@@ -2,12 +2,12 @@
 {
     public class FillLoader : IVoxmapLoader
     {
-        public void Load(Voxmap voxmap)
+        public void Load(Chunk chunk)
         {
-            for(var x=0; x<voxmap.Width; x++)
-                for(var y=0; y<voxmap.Height; y++)
-                for (var z = 0; z < voxmap.Depth; z++)
-                    voxmap[x, y, z] = Voxel.Create(1); 
+            for(var x=0; x<chunk.Width; x++)
+                for(var y=0; y<chunk.Height; y++)
+                for (var z = 0; z < chunk.Depth; z++)
+                    chunk[x, y, z] = Voxel.Create(1); 
         }
     }
 }

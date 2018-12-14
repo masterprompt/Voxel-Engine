@@ -2,6 +2,6 @@
 {
     public interface IVoxmapLoader
     {
-        void Load(Voxmap voxmap);
+        void Load(Chunk chunk);
     }
 }

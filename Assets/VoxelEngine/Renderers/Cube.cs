@@ -44,21 +44,21 @@ namespace VoxelEngine
             }
         }
 
-        public static void RenderQuad(Chunk chunk, Bounds bounds, Sides side)
+        public static void RenderQuad(ChunkMesh chunkMesh, Bounds bounds, Sides side)
         {
             var quadVertices = GetQuad(side);
-            chunk.vertices.Add(GetPoint(bounds, quadVertices[0]));
-            chunk.vertices.Add(GetPoint(bounds, quadVertices[1]));
-            chunk.vertices.Add(GetPoint(bounds, quadVertices[2]));
-            chunk.vertices.Add(GetPoint(bounds, quadVertices[3]));
-            var vertIndex = chunk.vertices.Count - 4;
-            chunk.triangles.AddRange(new int[]
+            chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[0]));
+            chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[1]));
+            chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[2]));
+            chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[3]));
+            var vertIndex = chunkMesh.vertices.Count - 4;
+            chunkMesh.triangles.AddRange(new int[]
             {
                 vertIndex,
                 vertIndex + 1,
                 vertIndex + 2
             });
-            chunk.triangles.AddRange(new int[]
+            chunkMesh.triangles.AddRange(new int[]
             {
                 vertIndex + 2,
                 vertIndex + 3,

@@ -6,49 +6,50 @@ namespace VoxelEngine
 {
     public class BlockRenderer : IVoxmapRenderer
     {
-        private Chunk chunk;
+        private ChunkMesh _chunkMesh;
 
-        public BlockRenderer(Chunk chunk)
+        public BlockRenderer(ChunkMesh chunkMesh)
         {
-            this.chunk = chunk;
+            this._chunkMesh = chunkMesh;
         }
 
-        private bool HasVoxel(Voxmap voxmap, int x, int y, int z)
+        private bool HasVoxel(Chunk chunk, int x, int y, int z)
         {
             if (x < 0 || y < 0 || z < 0) return false;
-            if (x >= voxmap.Width || y >= voxmap.Height || z >= voxmap.Depth) return false;
-            return voxmap[x, y, z].m > 0;
+            if (x >= chunk.Width || y >= chunk.Height || z >= chunk.Depth) return false;
+            return chunk[x, y, z].m > 0;
         }
         
-        public void Render(Voxmap voxmap)
+        public void Render(Chunk chunk)
         {
             //    Look at each voxel
-            var voxelSize = voxmap.VoxelSize;
-            var bounds = new Bounds(Vector3.zero, voxmap.VoxelSize);
+            var voxelSize = chunk.VoxelSize;
+            var bounds = new Bounds(Vector3.zero, chunk.VoxelSize);
             
-            var voxmapStart = voxmap.scale * -0.5f;
+            var voxmapStart = chunk.scale * -0.5f;
             //    For each voxel, render all sides of it
-            for (var x=0; x<voxmap.Width; x++)
+            for (var x=0; x<chunk.Width; x++)
             {
                 var xmin = voxmapStart.x + voxelSize.x * x;
-                for (var y=0; y<voxmap.Height; y++)
+                for (var y=0; y<chunk.Height; y++)
                 {
                     var ymin = voxmapStart.y + voxelSize.y * y;
-                    for (var z=0; z<voxmap.Depth; z++)
+                    for (var z=0; z<chunk.Depth; z++)
                     {
+                        //Debug.Log($"{x},{y},{z}");
                         // look at each surrounding voxel side to see if it needs to be rendered.
                         
-                        if(voxmap[x,y,z].m==0) continue;
+                        if(chunk[x,y,z].m==0) continue;
                         var zmin = voxmapStart.z + voxelSize.z * z;
                         var min = new Vector3(xmin, ymin, zmin);
                         var max = min + voxelSize;
                         bounds.SetMinMax(min, max);
-                        if (!HasVoxel(voxmap, x, y, z - 1)) Cube.RenderQuad(chunk, bounds, Cube.Sides.Back);
-                        if (!HasVoxel(voxmap, x, y, z + 1)) Cube.RenderQuad(chunk, bounds, Cube.Sides.Forward);
-                        if (!HasVoxel(voxmap, x-1, y, z)) Cube.RenderQuad(chunk, bounds, Cube.Sides.Left);
-                        if (!HasVoxel(voxmap, x+1, y, z)) Cube.RenderQuad(chunk, bounds, Cube.Sides.Right);
-                        if (!HasVoxel(voxmap, x, y+1, z)) Cube.RenderQuad(chunk, bounds, Cube.Sides.Up);
-                        if (!HasVoxel(voxmap, x, y-1, z)) Cube.RenderQuad(chunk, bounds, Cube.Sides.Down);
+                        if (!HasVoxel(chunk, x, y, z - 1)) Cube.RenderQuad(_chunkMesh, bounds, Cube.Sides.Back);
+                        if (!HasVoxel(chunk, x, y, z + 1)) Cube.RenderQuad(_chunkMesh, bounds, Cube.Sides.Forward);
+                        if (!HasVoxel(chunk, x-1, y, z)) Cube.RenderQuad(_chunkMesh, bounds, Cube.Sides.Left);
+                        if (!HasVoxel(chunk, x+1, y, z)) Cube.RenderQuad(_chunkMesh, bounds, Cube.Sides.Right);
+                        if (!HasVoxel(chunk, x, y+1, z)) Cube.RenderQuad(_chunkMesh, bounds, Cube.Sides.Up);
+                        if (!HasVoxel(chunk, x, y-1, z)) Cube.RenderQuad(_chunkMesh, bounds, Cube.Sides.Down);
 
 
                     }

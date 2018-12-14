@@ -2,7 +2,7 @@
 {
     public class VoxmapResizer
     {
-        public static void Resize(Voxmap source, Voxmap destination)
+        public static void Resize(Chunk source, Chunk destination)
         {
             
         }
