@@ -34,7 +34,6 @@ namespace VoxelEngine
 
         private int GetIndex(int x, int y, int z)
         {
-            // return x + Width * (y + Depth * z);
             return x * Width * Height + y * Height + z;
         }
     }

@@ -21,6 +21,9 @@ namespace VoxelEngine
                     chunk[x, y, z] = Voxel.Create(1);
             }
             
+            var voxelmap = chunk.ToVoxelmap();
+            chunk = voxelmap.ToChunk();
+            
             var chunkMesh = new ChunkMesh();
             var renderer = new BlockRenderer(chunkMesh);
             renderer.Render(chunk);
@@ -28,6 +31,8 @@ namespace VoxelEngine
             mesh.Clear();
             mesh.vertices = chunkMesh.vertices.ToArray();
             mesh.triangles = chunkMesh.triangles.ToArray();
+
+            
         }
     }
 }
