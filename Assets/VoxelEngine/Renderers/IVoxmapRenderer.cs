@@ -2,6 +2,6 @@
 {
     public interface IVoxmapRenderer
     {
-        void Render(Voxmap voxmap);
+        void Render(Chunk chunk);
     }
 }

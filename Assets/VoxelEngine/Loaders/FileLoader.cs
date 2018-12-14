@@ -11,11 +11,11 @@ namespace VoxelEngine.Loaders
             this.filePath = filePath;
         }
         
-        public void Load(Voxmap voxmap)
+        public void Load(Chunk chunk)
         {
             StreamReader reader = new StreamReader(filePath);
             var json = reader.ReadToEnd();
-            JsonUtility.FromJsonOverwrite(json, voxmap);
+            JsonUtility.FromJsonOverwrite(json, chunk);
             reader.Close();
         }
     }
