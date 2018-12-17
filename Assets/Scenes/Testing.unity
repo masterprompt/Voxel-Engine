@@ -280,12 +280,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503186198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff2c88c89e7c4fa1a9564e195dc10e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 50
+  size: 2
   optimize: 1
 --- !u!114 &1503186203
 MonoBehaviour:
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503186198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc94246c94d4a32aca2fa4ac40a378f, type: 3}
   m_Name: 

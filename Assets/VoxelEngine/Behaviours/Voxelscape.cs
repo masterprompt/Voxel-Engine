@@ -16,20 +16,25 @@ namespace VoxelEngine
         {
             
             
-            var filePath = UnityEngine.Application.dataPath + "/voxmap.json";
-            var voxelmap = new Chunk(size, size, size);
+            //var filePath = UnityEngine.Application.dataPath + "/voxmap.json";
+            var chunk = new Chunk(size, size, size);
             var loader = new FillLoader();
             //var loader = new FileLoader(filePath);
             //var loader = new PerlinNoise();
-            loader.Load(voxelmap);
-            var chunk = new ChunkMesh();
-            var renderer = new BlockRenderer(chunk);
-            renderer.Render(voxelmap);
+            loader.Load(chunk);
+
+
+            var voxelmap = chunk.ToVoxelmap();
+            chunk = voxelmap.ToChunk();
+            
+            var chunkMesh = new ChunkMesh();
+            var renderer = new BlockRenderer(chunkMesh);
+            renderer.Render(chunk);
             UnityEngine.Mesh mesh = GetComponent<MeshFilter>().mesh;
             mesh.Clear();
-            mesh.vertices = chunk.vertices.ToArray();
-            mesh.triangles = chunk.triangles.ToArray();
-            Debug.Log("Triangles:" + chunk.triangles.Count);
+            mesh.vertices = chunkMesh.vertices.ToArray();
+            mesh.triangles = chunkMesh.triangles.ToArray();
+            Debug.Log("Triangles:" + chunkMesh.triangles.Count);
             //mesh.RecalculateNormals();
             if (optimize) MeshUtility.Optimize(mesh);
             

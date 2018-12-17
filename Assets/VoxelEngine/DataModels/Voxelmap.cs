@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
 /*
  .csa (chunk slice array)
@@ -32,6 +34,67 @@ namespace VoxelEngine
         {
             // png encoded byte array
             public byte[] bytes;
+        }
+
+        public byte[] bytes
+        {
+            get
+            {
+                using(MemoryStream stream = new MemoryStream())
+                {
+                    var encoding = new UnicodeEncoding();
+                    var sw = new StreamWriter(stream, encoding);
+                    try
+                    {
+                        sw.Write(HEADER);
+                        sw.Write(VERSION);
+                        sw.Write(width);
+                        sw.Write(height);
+                        sw.Write(depth);
+                        sw.Write(slices.Length);
+                        foreach (var slice in slices)
+                        {
+                            sw.Write(slice.bytes.Length);
+                            sw.Write(slice.bytes);
+                        }
+                        sw.Flush();
+                        return stream.ToArray();
+                    }
+                    finally
+                    {
+                        sw.Dispose();
+                    }
+                }
+            }
+            set
+            {
+                using(MemoryStream stream = new MemoryStream(value))
+                {
+                    var encoding = new UnicodeEncoding();
+                    var sr = new StreamReader(stream, encoding);
+                    try
+                    {
+                        var header
+                        sw.Write(HEADER);
+                        sw.Write(VERSION);
+                        sw.Write(width);
+                        sw.Write(height);
+                        sw.Write(depth);
+                        sw.Write(slices.Length);
+                        foreach (var slice in slices)
+                        {
+                            sw.Write(slice.bytes.Length);
+                            sw.Write(slice.bytes);
+                        }
+                        sw.Flush();
+                        return stream.ToArray();
+                    }
+                    finally
+                    {
+                        sw.Dispose();
+                    }
+                }
+            }
         }
     }
 }
