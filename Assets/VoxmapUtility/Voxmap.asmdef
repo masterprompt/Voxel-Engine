@@ -1,8 +1,6 @@
 {
-    "name": "VoxelEngine",
-    "references": [
-        "VoxmapUtilities"
-    ],
+    "name": "VoxmapUtilities",
+    "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
