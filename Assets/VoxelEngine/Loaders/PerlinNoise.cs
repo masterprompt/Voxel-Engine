@@ -16,7 +16,7 @@ namespace VoxelEngine.Loaders
                 var ySample = Mathf.PerlinNoise(xSample, zSample);
                 float yMax = Mathf.FloorToInt(ySample * chunk.Height);
                 for (var y = 0; y < yMax; y++)
-                    chunk[x,y,z] = Voxel.Create(1);
+                    chunk[x,y,z] = Voxel.Create(Utilities.Material.RandomMaterial());
             }
         }
     }

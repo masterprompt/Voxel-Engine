@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2c88c89e7c4fa1a9564e195dc10e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 50
-  optimize: 1
+  voxmapFile: {fileID: 4900000, guid: 14d84db34d3854f00a9935f6eb68b8b4, type: 3}
+  optimize: 0
 --- !u!114 &1503186203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc94246c94d4a32aca2fa4ac40a378f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: d3f46e995cc7041e5ba698eab4338d5c, type: 3}
+  texture: {fileID: 2800000, guid: c3a89482f440a4c2db9a0b736accb96f, type: 3}
+  size: 10
 --- !u!1 &1818407620
 GameObject:
   m_ObjectHideFlags: 0

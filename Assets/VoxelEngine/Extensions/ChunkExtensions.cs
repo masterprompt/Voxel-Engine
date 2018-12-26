@@ -17,7 +17,7 @@ namespace VoxelEngine
                 for(var x=0; x<chunk.Width; x++)
                 for (var z = 0; z < chunk.Depth; z++)
                 {
-                    var color = new Color32((byte) chunk[x, y, z].m, 0, 0, 255);
+                    var color = chunk[x, y, z].ToColor32();
                     image.SetPixel(x, z, color);
 
                 }
@@ -30,6 +30,11 @@ namespace VoxelEngine
                 height = chunk.Height,
                 depth = chunk.Depth
             };
+        }
+
+        public static bool Save(this Chunk chunk, string filename)
+        {
+            return chunk.ToVoxmap().Save(filename);
         }
     }
 }

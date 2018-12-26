@@ -5,11 +5,13 @@ namespace VoxelEngine
     public class VoxelImage : MonoBehaviour
     {
         public Texture2D texture;
+        public int size = 10;
 
         public void Start()
         {
             var width = texture.width;
             var height = texture.height;
+            Debug.Log($"Width:{width} Height:{height}");
             var chunk = new Chunk(width, height, height);
             for(var x=0; x<width; x++)
             for (var z = 0; z < height; z++)

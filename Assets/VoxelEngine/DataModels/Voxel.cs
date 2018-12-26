@@ -11,13 +11,13 @@ namespace VoxelEngine
         /// <summary>
         /// Material
         /// </summary>
-        public int m;
+        public int material;
 
         public static Voxel Create(int material)
         {
             return new Voxel
             {
-                m = material
+                material = material
             };
         }
     }

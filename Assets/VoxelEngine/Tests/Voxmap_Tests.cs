@@ -17,17 +17,17 @@ public class Voxmap_Tests
     
     [Test]
     public void TestXLocation() {
-        Assert.AreEqual(GetVoxmap()[0,1,2].m, 1);
+        Assert.AreEqual(GetVoxmap()[0,1,2].material, 1);
     }
 
     [Test]
     public void TestYLocation() {
-        Assert.AreEqual(GetVoxmap()[2,1,0].m, 2);
+        Assert.AreEqual(GetVoxmap()[2,1,0].material, 2);
     }
     
     [Test]
     public void TestZLocation() {
-        Assert.AreEqual(GetVoxmap()[0,2,1].m, 3);
+        Assert.AreEqual(GetVoxmap()[0,2,1].material, 3);
     }
     
     [Test]

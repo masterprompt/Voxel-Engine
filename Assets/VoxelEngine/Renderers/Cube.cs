@@ -44,13 +44,17 @@ namespace VoxelEngine
             }
         }
 
-        public static void RenderQuad(ChunkMesh chunkMesh, Bounds bounds, Sides side)
+        public static void RenderQuad(ChunkMesh chunkMesh, Bounds bounds, Sides side, Color32 color)
         {
             var quadVertices = GetQuad(side);
             chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[0]));
             chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[1]));
             chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[2]));
             chunkMesh.vertices.Add(GetPoint(bounds, quadVertices[3]));
+            chunkMesh.colors.Add(color);
+            chunkMesh.colors.Add(color);
+            chunkMesh.colors.Add(color);
+            chunkMesh.colors.Add(color);
             var vertIndex = chunkMesh.vertices.Count - 4;
             chunkMesh.triangles.AddRange(new int[]
             {

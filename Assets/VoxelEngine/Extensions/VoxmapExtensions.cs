@@ -20,8 +20,8 @@ namespace VoxelEngine
                 for (var x = 0; x < chunk.Width; x++)
                 for (var z = 0; z < chunk.Depth; z++)
                 {
-                    var color = image.GetPixel(x, z);
-                    chunk[x, y, z] = Voxel.Create(Mathf.FloorToInt(color.r * 255));
+                    var color = (Color32)image.GetPixel(x, z);
+                    chunk[x, y, z] = color.ToVoxel();
                 }
             }
             return chunk;

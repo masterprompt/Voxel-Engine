@@ -27,7 +27,7 @@ namespace VoxelEngine
                     var ymax = ymin + voxelSize.y;
                     for (var z=0; z<chunk.Depth; z++)
                     {
-                        if(chunk[x,y,z].m==0) continue;
+                        if(chunk[x,y,z].material==0) continue;
                         var zmin = voxmapStart.z + (voxelSize.z * z);
                         var zmax = zmin + voxelSize.z;
                         AddQuad(_chunkMesh, CreateFaceX(xmin, xmax, ymin, ymax, zmin));
