@@ -10,18 +10,24 @@ namespace VoxelEngine
     public class Chunk
     {
         public Voxel[] voxels;
-        public int Width { get; }
-        public int Height { get; }
-        public int Depth { get; }
+        [SerializeField]
+        private int _width;
+        [SerializeField]
+        private int _height;
+        [SerializeField]
+        private int _depth;
+        public int Width => _width;
+        public int Height => _height;
+        public int Depth => _depth;
         public Vector3 scale;
 
         public Vector3 VoxelSize => new Vector3(scale.x / Width, scale.y / Height, scale.z / Depth);
 
         public Chunk(int width, int height, int depth)
         {
-            Width = width;
-            Height = height;
-            Depth = depth;
+            _width = width;
+            _height = height;
+            _depth = depth;
             voxels = new Voxel[width * height * depth];
             scale = Vector3.one;
         }

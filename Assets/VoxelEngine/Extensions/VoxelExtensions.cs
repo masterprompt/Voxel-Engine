@@ -16,5 +16,11 @@ namespace VoxelEngine
             var material = BitConverter.ToInt32(new [] {color.r, color.g, color.b, color.a }, 0);
             return Voxel.Create(material);
         }
+        
+        public static Voxel ToVoxel(this Color color)
+        {
+            var material = BitConverter.ToInt32(new [] {(byte)Mathf.FloorToInt(color.r * 255), (byte)Mathf.FloorToInt(color.g * 255), (byte)Mathf.FloorToInt(color.b * 255), (byte)255 }, 0);
+            return Voxel.Create(material);
+        }
     }
 }

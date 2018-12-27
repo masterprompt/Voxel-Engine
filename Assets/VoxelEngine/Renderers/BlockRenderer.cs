@@ -39,9 +39,9 @@ namespace VoxelEngine
                     {
                         //Debug.Log($"{x},{y},{z}");
                         // look at each surrounding voxel side to see if it needs to be rendered.
-                        
                         if(chunk[x,y,z].material==0) continue;
                         var color32 = chunk[x, y, z].ToColor32();
+                        
                         var zmin = voxmapStart.z + voxelSize.z * z;
                         var min = new Vector3(xmin, ymin, zmin);
                         var max = min + voxelSize;

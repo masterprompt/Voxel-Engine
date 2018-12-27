@@ -46,6 +46,20 @@ namespace VoxelEngine
             Export(chunk, "cube");
         }
 
+        [MenuItem("Voxel Engine/Export/Selected Object")]
+        static void SelectedObject()
+        {
+            if (!IsSelectedObject()) return;
+            ((GameObject) Selection.activeObject).GetComponent<Voxelizer>().Voxelize();
+        }
+
+        [MenuItem("Voxel Engine/Export/Selected Object", true)]
+        static bool IsSelectedObject()
+        {
+            return Selection.activeObject.GetType() == typeof(GameObject)
+                   && ((GameObject) Selection.activeObject).GetComponent<Voxelizer>() != null;
+        }
+
         private static void Export(Chunk chunk, string name = "voxmap")
         {
             var filename = EditorUtility.SaveFilePanel("Save sphere voxmap", dataPath, $"{name}.bytes", "bytes");
